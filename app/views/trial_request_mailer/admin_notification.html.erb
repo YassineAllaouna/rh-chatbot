@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Nouvelle demande d'essai gratuit</h1>
+    <p>
+      Une nouvelle demande d'essai gratuit a été soumise :
+    </p>
+    <ul>
+      <li>Entreprise : <%= @trial_request.company_name %></li>
+      <li>Nom : <%= @trial_request.full_name %></li>
+      <li>Email : <%= @trial_request.email %></li>
+      <li>Téléphone : <%= @trial_request.phone %></li>
+      <% if @trial_request.message.present? %>
+        <li>Message : <%= @trial_request.message %></li>
+      <% end %>
+    </ul>
+    <p>
+      Connectez-vous à l'interface d'administration pour gérer cette demande.
+    </p>
+  </body>
+</html>

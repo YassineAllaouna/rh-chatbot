@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1><%= @onboarding_assignment.onboarding_template.title %></h1>
+  <%= link_to "Retour au dashboard", employee_dashboard_path, class: "btn btn-outline-secondary" %>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= @onboarding_assignment.onboarding_template.description %></p>
+    
+    <div class="progress mb-3">
+      <div class="progress-bar" role="progressbar" style="width: <%= @onboarding_assignment.progress_percentage %>%;" 
+           aria-valuenow="<%= @onboarding_assignment.progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
+        <%= @onboarding_assignment.progress_percentage %>%
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="list-group">
+  <% @steps.each do |step| %>
+    <div class="list-group-item" data-controller="step-completion" data-step-completion-url-value="<%= complete_step_employee_onboarding_assignment_path(@onboarding_assignment, step_id: step.id) %>">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-1"><%= step.title %></h5>
+          <p class="mb-1"><%= step.content %></p>
+        </div>
+        <div>
+          <% if step.step_completions.exists?(onboarding_assignment: @onboarding_assignment) %>
+            <span class="badge bg-success">Complété</span>
+          <% else %>
+            <button class="btn btn-outline-primary" data-action="click->step-completion#complete">
+              Marquer comme complété
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

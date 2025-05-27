@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Merci pour votre demande d'essai gratuit !</h1>
+    <p>
+      Bonjour <%= @trial_request.full_name %>,
+    </p>
+    <p>
+      Nous avons bien reçu votre demande d'essai gratuit pour <%= @trial_request.company_name %>.
+      Notre équipe va étudier votre demande et vous recontactera dans les plus brefs délais.
+    </p>
+    <p>
+      Voici un récapitulatif de votre demande :
+    </p>
+    <ul>
+      <li>Entreprise : <%= @trial_request.company_name %></li>
+      <li>Nom : <%= @trial_request.full_name %></li>
+      <li>Email : <%= @trial_request.email %></li>
+      <li>Téléphone : <%= @trial_request.phone %></li>
+      <% if @trial_request.message.present? %>
+        <li>Message : <%= @trial_request.message %></li>
+      <% end %>
+    </ul>
+    <p>
+      Si vous avez des questions, n'hésitez pas à nous contacter.
+    </p>
+    <p>
+      Cordialement,<br>
+      L'équipe RH Onboarding
+    </p>
+  </body>
+</html>

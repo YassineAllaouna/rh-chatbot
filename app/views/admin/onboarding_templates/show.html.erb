@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1><%= @onboarding_template.title %></h1>
+  <div>
+    <%= link_to "Modifier", edit_admin_onboarding_template_path(@onboarding_template), class: "btn btn-outline-primary" %>
+    <%= link_to "Retour", admin_onboarding_templates_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= @onboarding_template.description %></p>
+  </div>
+</div>
+
+<h2 class="mb-4">Étapes</h2>
+<div class="list-group">
+  <% @onboarding_template.steps.each do |step| %>
+    <div class="list-group-item">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-1"><%= step.title %></h5>
+          <p class="mb-1"><%= step.content %></p>
+          <small class="text-muted">Position : <%= step.position %></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Parcours d'intégration</h1>
+    <%= link_to "Créer un nouveau parcours", new_admin_onboarding_template_path, class: "btn btn-primary" %>
+  </div>
+
+  <% if @onboarding_templates.any? %>
+    <div class="row">
+      <% @onboarding_templates.each do |template| %>
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= template.title %></h5>
+              <p class="card-text"><%= template.description %></p>
+              <div class="btn-group">
+                <%= link_to "Voir", admin_onboarding_template_path(template), class: "btn btn-outline-primary" %>
+                <%= link_to "Modifier", edit_admin_onboarding_template_path(template), class: "btn btn-outline-secondary" %>
+                <%= button_to "Supprimer", admin_onboarding_template_path(template), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Êtes-vous sûr ?" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      Aucun parcours d'intégration n'a été créé pour le moment.
+    </div>
+  <% end %>
+</div>

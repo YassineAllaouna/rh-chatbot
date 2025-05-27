@@ -1,0 +1,5 @@
+fr:
+  onboarding_assignment:
+    status:
+      in_progress: "En cours"
+      completed: "Terminé" 

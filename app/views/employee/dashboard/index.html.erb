@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="mb-4">Mes parcours d'intégration</h1>
+
+  <% if @onboarding_assignments.any? %>
+    <div class="row">
+      <% @onboarding_assignments.each do |assignment| %>
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= assignment.onboarding_template.title %></h5>
+              <p class="card-text"><%= assignment.onboarding_template.description %></p>
+              <%= link_to "Voir le parcours", employee_onboarding_assignment_path(assignment), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      Vous n'avez pas encore de parcours d'intégration assigné.
+    </div>
+  <% end %>
+</div>

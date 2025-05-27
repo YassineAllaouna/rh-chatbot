@@ -1,0 +1,38 @@
+<%= form_with(model: [:admin, @onboarding_template], local: true) do |f| %>
+  <% if @onboarding_template.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@onboarding_template.errors.count, "erreur") %> empêchent la sauvegarde :</h4>
+      <ul>
+        <% @onboarding_template.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :title, "Titre", class: "form-label" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, "Description", class: "form-label" %>
+    <%= f.text_area :description, class: "form-control", rows: 3 %>
+  </div>
+
+  <h3 class="mt-4">Étapes</h3>
+  <div id="steps">
+    <%= f.fields_for :steps do |step_form| %>
+      <%= render 'step_fields', f: step_form %>
+    <% end %>
+
+    <div class="mb-3">
+      <%= link_to_add_association "Ajouter une étape", f, :steps, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Annuler", admin_onboarding_templates_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %> 
